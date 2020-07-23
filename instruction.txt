@@ -1,0 +1,35 @@
+Все нижеизложенные актуально для Linux:
+
+1. Создать пользователя и БД
+sudo -u postgres psql
+
+postgres=# CREATE DATABASE fabrique;
+postgres=# CREATE USER fabrique WITH PASSWORD 'pa$$w0rd';
+postgres=# ALTER ROLE fabrique SET client_encoding TO 'utf8';
+postgres=# ALTER ROLE fabrique SET default_transaction_isolation TO 'read committed';
+postgres=# ALTER ROLE fabrique SET timezone TO 'UTC';
+postgres=# GRANT ALL PRIVILEGES ON DATABASE fabrique TO fabrique;
+
+2. Создать виртуальное окружение
+virtualenv env
+source enb/bin/activate
+pip istall -r requirements.txt
+python manage.py migrate
+
+3. Создать администратора
+python manage.py createsuperuser
+
+4. Создать токен для аутентификации администратора
+python manage.py drf_create_token 
+или использовать ссылку /auth для получения токена
+передавать post username и password 
+Далее для всех запросов администратора необходимо добавлять HTTP header Authorization
+следующего вида: Token 9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b 
+ 
+
+5. запустить сервер в режиме разработки 
+python manage.py runserver ip:port 
+
+Документация лежит по ссылке /docs
+
+6. Если нужно больше gunicorn + nginx

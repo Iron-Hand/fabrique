@@ -1,0 +1,23 @@
+[
+    {
+      "model": "polls.QuestionType",
+      "pk": 1,
+      "fields": {
+        "name": "text"
+      }
+    },
+    {
+      "model": "polls.QuestionType",
+      "pk": 2,
+      "fields": {
+        "name": "single"
+      }
+    },
+    {
+        "model": "polls.QuestionType",
+        "pk": 3,
+        "fields": {
+          "name": "multi"
+        }
+      }
+  ]
